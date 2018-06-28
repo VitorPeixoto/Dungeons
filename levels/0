@@ -1,0 +1,86 @@
+level: 0
+cellSize: 32 32 32
+
+c  1  0 4
+c  2  0 5
+c  3  0 6
+c  4  0 7
+c  5  0 9
+
+c  6  1  2
+c  7  1  3
+c  8  1  4
+c  9  1  7
+c 10  1  8
+c 11  1  9
+c 12  1 10
+
+c 13  2  2
+c 14  2  4
+c 15  2 10
+
+c 16  3  2
+c 17  3  7
+c 18  3  9
+c 19  3 10
+
+
+initial: 16
+
+rl  1  0  2  0  8
+rl  2  1  3  0  0
+rl  3  2  4  0  0
+rl  4  3  0  0  9
+rl  5  0  0  0 11
+rl  6  0  7  0 13
+rl  7  6  8  0  0
+rl  8  7  0  1 14
+rl  9  0 10  4  0
+rl 10  9 11  0  0
+rl 11 10 12  5  0
+rl 12 11  0  0 15
+rl 13  0  0  6 16
+rl 14  0  0  8  0
+rl 15  0  0 12 19
+rl 16  0  0 13  0
+rl 17  0  0  0  0
+rl 18  0 19  0  0
+rl 19 18  0 15  0
+
+
+#id: 1
+#grid: 0 4 
+#left: null
+#right: 2
+#top: null
+#bottom: null
+
+#id: 2
+#grid: 0 5
+#left: 1
+#right: 3
+#top: null
+#bottom: null
+
+#id: 3
+#grid: 0 6
+#left: 2
+#right: 4
+#top: null
+#bottom: null
+
+#id: 4
+#grid: 0 7
+#left: 3
+#right: null
+#top: null
+#bottom: 5
+
+#id: 5
+#grid: 1 7
+#left: null
+#right: null
+#top: 4
+#bottom: null
+
+
