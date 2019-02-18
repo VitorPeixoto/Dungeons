@@ -14,10 +14,11 @@ void Cell::drawCube() {
     if(front == nullptr) {
         //glColor3f(0.5, 0.0, 0.0);
         glBegin(GL_POLYGON);
-            glTexCoord2f(0.0, 0.0); glVertex3d(0.5, -0.5, -0.5);
-            glTexCoord2f(1.0, 0.0); glVertex3d(0.5, 0.5, -0.5);
-            glTexCoord2f(1.0, 1.0); glVertex3d(0.5, 0.5, 0.5);
-            glTexCoord2f(0.0, 1.0); glVertex3d(0.5, -0.5, 0.5);
+            //glColor3f(0.5, 0.0, 0.0);glTexCoord2f(0.0, 0.0); glVertex3d(0.5, 0.5, -0.5); glColor3f(1.0, 1.0, 1.0);
+            glTexCoord2f(0.0, 0.0); glVertex3d(0.5, 0.5, -0.5);
+            glTexCoord2f(1.0, 0.0); glVertex3d(0.5, 0.5, 0.5);
+            glTexCoord2f(1.0, 1.0); glVertex3d(0.5, -0.5, 0.5);
+            glTexCoord2f(0.0, 1.0); glVertex3d(0.5, -0.5, -0.5);
         glEnd();
     }
 
@@ -25,9 +26,9 @@ void Cell::drawCube() {
     if(back == nullptr) {
        // glColor3f(0.0, 0.5, 0.5);
         glBegin(GL_POLYGON);
-            glTexCoord2f(0.0, 0.0); glVertex3d(-0.5, -0.5,  0.5);
+            glTexCoord2f(0.0, 0.0); glVertex3d(-0.5, 0.5,  -0.5);
             glTexCoord2f(1.0, 0.0); glVertex3d(-0.5,  0.5,  0.5);
-            glTexCoord2f(1.0, 1.0); glVertex3d(-0.5,  0.5, -0.5);
+            glTexCoord2f(1.0, 1.0); glVertex3d(-0.5,  -0.5, 0.5);
             glTexCoord2f(0.0, 1.0); glVertex3d(-0.5, -0.5, -0.5);
         glEnd();
     }
@@ -37,9 +38,9 @@ void Cell::drawCube() {
         //glColor3f(0.5, 0.5, 0.5);
         glBegin(GL_POLYGON);
             glTexCoord2f(0.0, 0.0); glVertex3d(0.5, 0.5, 0.5);
-            glTexCoord2f(1.0, 0.0); glVertex3d(0.5, -0.5, 0.5);
+            glTexCoord2f(1.0, 0.0); glVertex3d(-0.5, 0.5, 0.5);
             glTexCoord2f(1.0, 1.0); glVertex3d(-0.5, -0.5, 0.5);
-            glTexCoord2f(0.0, 1.0); glVertex3d(-0.5, 0.5, 0.5);
+            glTexCoord2f(0.0, 1.0); glVertex3d(0.5, -0.5, 0.5);
         glEnd();
     }
 
@@ -47,9 +48,9 @@ void Cell::drawCube() {
     if(left == nullptr) {
         //glColor3f(0.7, 0.7, 0.7);
         glBegin(GL_POLYGON);
-            glTexCoord2f(0.0, 0.0); glVertex3d(0.5, -0.5, -0.5);
+            glTexCoord2f(0.0, 0.0); glVertex3d(-0.5, 0.5, -0.5);
             glTexCoord2f(1.0, 0.0); glVertex3d(0.5, 0.5, -0.5);
-            glTexCoord2f(1.0, 1.0); glVertex3d(-0.5, 0.5, -0.5);
+            glTexCoord2f(1.0, 1.0); glVertex3d(0.5, -0.5, -0.5);
             glTexCoord2f(0.0, 1.0); glVertex3d(-0.5, -0.5, -0.5);
         glEnd();
     }
@@ -126,7 +127,7 @@ void Cell::drawEdges() {
 void Cell::draw() {
     glColor3f(1.0, 1.0, 1.0);
     glPushMatrix();
-        glTranslatef(-grid[0]*32, 0.0, grid[1]*32);
+        glTranslatef(-grid[0]*Cell::width, 0.0, grid[1]*Cell::depth);
         glScaled(Cell::width, Cell::height, Cell::depth);
         drawEdges();
         drawCube();
@@ -261,25 +262,26 @@ int Cell::depth  = 0;
 
 void Cell::loadTexture() {
     wallTextureId = SOIL_load_OGL_texture(
-            "../images/StoneWall.jpg",
+            //"../images/StoneWall.jpg",
+            "../images/dungeon_wall_01_dif.png",
             SOIL_LOAD_AUTO,
             SOIL_CREATE_NEW_ID,
             0
     );
 
     if (wallTextureId == 0) {
-        cout << "Erro do SOIL: " << SOIL_last_result() << ": " << "../images/StoneWall.jpg" << endl;
+        cout << "Erro do SOIL: " << SOIL_last_result() << ": " << "../images/dungeon_wall_01_dif.png" << endl;
     }
 
     floorTextureId = SOIL_load_OGL_texture(
-            "../images/PlateFloor.jpg",
+            "../images/dungeon_floor_01_dif.png",
             SOIL_LOAD_AUTO,
             SOIL_CREATE_NEW_ID,
             0
     );
 
     if (floorTextureId == 0) {
-        cout << "Erro do SOIL: " << SOIL_last_result() << ": " << "../images/PlateFloor.jpg" << endl;
+        cout << "Erro do SOIL: " << SOIL_last_result() << ": " << "../images/dungeon_floor_01_dif.png" << endl;
     }
 }
 

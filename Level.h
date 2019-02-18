@@ -16,6 +16,8 @@ private:
     Cell* currentCell;
     bool drawn;
 
+    GLuint mapTextureId;
+
     void load();
 
 public:

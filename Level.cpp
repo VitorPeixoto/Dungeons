@@ -21,6 +21,18 @@ void Level::draw(int neighbors) {
 }
 //25x21
 void Level::drawMap() {
+    glEnable(GL_TEXTURE_2D);
+
+    glBindTexture(GL_TEXTURE_2D, mapTextureId);
+    glColor3f(1.0, 1.0, 1.0);
+    glBegin(GL_POLYGON);
+        glTexCoord2f(0.0, 0.0); glVertex3d(-2, -2, -0.1);
+        glTexCoord2f(1.0, 0.0); glVertex3d(27*1.77,  -2, -0.1);
+        glTexCoord2f(1.0, 1.0); glVertex3d(27*1.77,  23, -0.1);
+        glTexCoord2f(0.0, 1.0); glVertex3d(-2, 23,  -0.1);
+    glEnd();
+    glDisable(GL_TEXTURE_2D);
+
     for(Cell c : cells)
         if(c.isVisited()) c.drawWalls();
     currentCell->drawPlayer();
@@ -108,6 +120,17 @@ Cell *Level::getCurrentCell() const {
 }
 
 void Level::loadTextures() {
+    mapTextureId = SOIL_load_OGL_texture(
+            "../images/OldPaper.png",
+            SOIL_LOAD_AUTO,
+            SOIL_CREATE_NEW_ID,
+            0
+    );
+
+    if (mapTextureId == 0) {
+        cout << "Erro do SOIL: " << SOIL_last_result() << ": " << "../images/OldPaper.png" << endl;
+    }
+
     for(auto& c : cells)
         c.loadTexture();
 }
